@@ -28,7 +28,7 @@ const ReportScores = () => {
     <>
       <AboutBg style={{ backgroundImage: `url(${BgPic})` }}></AboutBg>
       <PageContainer>
-        <PageWrapper onSubmit={handleSubmit(onSubmit)}>
+        <PageWrapper >
           <Title>Report Scores</Title>
           <Description>
             One player from each team reports scores for team
@@ -162,6 +162,7 @@ const ReportScores = () => {
             <ItemWrapper>
               <label htmlFor="game4Placement">Game 4 Placement:</label>
               <TourneyDrop
+                {...register("game4Placement")}
                 name="game4Placement"
                 id="game4Placement"
                 placeholder="Game4Placement"
@@ -177,9 +178,10 @@ const ReportScores = () => {
               </TourneyDrop>
             </ItemWrapper>
           </ItemContainer>
-          <ReportBtn type="submit" >
+          <ReportBtn onClick={handleSubmit(onSubmit)}>
             Submit
           </ReportBtn>
+          
         </PageWrapper>
       </PageContainer>
       <FootSpacer></FootSpacer>
