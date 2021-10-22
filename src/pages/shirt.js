@@ -12,14 +12,14 @@ const ShirtPage = () => {
     setLargePic(!isLargePic);
   };
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 0) {
+    if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
