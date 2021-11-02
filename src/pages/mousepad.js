@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar";
 import Navbar from "../components/Navbar";
 import Mousepad from "../components/Clothing";
 import { Length } from "../components/Clothing/SliderData";
+import SidebarCart from "../SidebarCart";
 
 const MousepadPage = () => {
   const [isLargePic, setLargePic] = useState(false);
@@ -15,12 +16,12 @@ const MousepadPage = () => {
   const [quantity, setQuantity] = useState(1);
 
   const increaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+      setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
 
@@ -40,9 +41,21 @@ const MousepadPage = () => {
     setCurrentSlide(currentSlide === 0 ? Length - 1 : currentSlide - 1);
   };
 
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
     <div>
-      <Sidebar isOpen={isOpen} toggle={toggle} />
+      <SidebarCart isCartOpen={isCartOpen} toggleCart={toggleCart} />
+      <Sidebar
+        isCartOpen={isCartOpen}
+        toggleCart={toggleCart}
+        isOpen={isOpen}
+        toggle={toggle}
+      />
       <Navbar toggle={toggle} />
       <Mousepad
         nextSlide={nextSlide}

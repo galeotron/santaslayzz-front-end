@@ -42,7 +42,7 @@ const Sweats = ({
   const picProps = {
     src: currentSlide === 0 ? frontPic : backPic,
   };
-
+  
   return (
     <>
       <AboutBg style={{ backgroundImage: `url(${BgPic})` }}></AboutBg>

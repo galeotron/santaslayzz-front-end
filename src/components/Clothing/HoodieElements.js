@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link as LinkR } from "react-router-dom";
+// import { Link as LinkR } from "react-router-dom";
 
 export const ClothingContainer = styled.div`
   margin-top: 30px;
@@ -96,7 +96,7 @@ export const SizeSelector = styled.select`
   margin-bottom: 10px;
 `;
 
-export const Btn = styled(LinkR)`
+export const Btn = styled.div`
   cursor: pointer;
   display: inline-block;
   border: #fe212d 0.125em solid;

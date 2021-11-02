@@ -18,10 +18,37 @@ import {
   TicketsContainer,
   TicketsWrapper,
 } from "./SignUpElements";
+import {
+  CounterContainer,
+  CounterWrapper,
+  CounterButtons,
+  CounterInput,
+} from "../Clothing/HoodieElements";
 import rules from "../../pdf/Tourney_rules.pdf";
 import banner from "../../images/tourney-banner-may.jpg";
+import { useForm } from "react-hook-form";
 
 const SignUp = () => {
+
+  const { register, watch, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      quantity: 1
+    }
+  });
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  const quantity = watch("quantity");
+  const increaseQuantity = () => setValue("quantity", quantity + 1);
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setValue("quantity", quantity - 1);
+    }
+  };
+
+  const total = quantity*10;
+
   return (
     <>
       <AboutBg style={{ backgroundImage: `url(${BgPic})` }}></AboutBg>
@@ -55,13 +82,13 @@ const SignUp = () => {
                 <AboutLargeText>Tickets</AboutLargeText>
               </TicketsWrapper>
               <TicketsWrapper>
-                <GridSpecialText>Price</GridSpecialText>
+                <GridSpecialText>Price:</GridSpecialText>
               </TicketsWrapper>
               <TicketsWrapper>
-                <GridSpecialText>Quantity</GridSpecialText>
+                <GridSpecialText>Quantity:</GridSpecialText>
               </TicketsWrapper>
               <TicketsWrapper>
-                <GridSpecialText>Total</GridSpecialText>
+                <GridSpecialText>Total:</GridSpecialText>
               </TicketsWrapper>
               <TicketsWrapper>
                 <SpecialText>Warzone DUOS</SpecialText>
@@ -70,23 +97,44 @@ const SignUp = () => {
                 <GridSpecialText>$10</GridSpecialText>
               </TicketsWrapper>
               <TicketsWrapper>
-                <GridSpecialText>Change this</GridSpecialText>
+                <CounterContainer>
+                  <CounterWrapper>
+                    <CounterButtons onClick={decreaseQuantity}>
+                      -
+                    </CounterButtons>
+                  </CounterWrapper>
+                  <CounterWrapper>
+                    <CounterInput
+                      {...register("quantity")}
+                      placeholder="Quantity"
+                      id="quantity"
+                      type="number"
+                    >
+                      {quantity}
+                    </CounterInput>
+                  </CounterWrapper>
+                  <CounterWrapper>
+                    <CounterButtons onClick={increaseQuantity}>
+                      +
+                    </CounterButtons>
+                  </CounterWrapper>
+                </CounterContainer>
               </TicketsWrapper>
               <TicketsWrapper>
-                <GridSpecialText>useState thing</GridSpecialText>
+                <GridSpecialText>${total}</GridSpecialText>
               </TicketsWrapper>
 
-              <div></div>
+              {/* <div></div>
               <div></div>
               <TicketsWrapper>
                 <GridSpecialText>Total:</GridSpecialText>
               </TicketsWrapper>
               <TicketsWrapper>
                 <GridSpecialText>useState thing</GridSpecialText>
-              </TicketsWrapper>
+              </TicketsWrapper> */}
 
               <SignupWrap>
-                <SignupBtn>Checkout</SignupBtn>
+                <SignupBtn onClick={handleSubmit(onSubmit)}>Checkout</SignupBtn>
               </SignupWrap>
             </TicketsContainer>
           </AboutContainer>

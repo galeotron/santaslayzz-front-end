@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
   ArrowContainer,
   ArrowWrapper,
@@ -20,6 +21,7 @@ import {
   Title,
 } from "./HoodieElements";
 
+import { useForm } from "react-hook-form";
 import { AboutBg } from "../AboutBg/AboutElements";
 import BgPic from "../../images/stock-background.jpg";
 import frontPic from "../../images/front-hoodie.webp";
@@ -35,13 +37,62 @@ const Hoodie = ({
   currentSlide,
   makeLarge,
   isLargePic,
-  quantity,
-  increaseQuantity,
-  decreaseQuantity
+  // quantity,
+  // increaseQuantity,
+  // decreaseQuantity,
 }) => {
   const picProps = {
     src: currentSlide === 0 ? frontPic : backPic,
   };
+
+  const { register, watch, handleSubmit, setValue } = useForm({
+    defaultValues: {
+      hoodieQuantity: 1,
+    },
+  });
+  const onSubmit = async (data) => {
+    const cart = editCart()
+    const response = await axios.post("http://localhost:5000/store/create-checkout-session", cart, {headers: {"Content-Type": "text/plain"}})
+    console.log(response)
+    window.location.href = response.data.url
+    console.log(data);
+  };
+
+  const hoodieQuantity = watch("hoodieQuantity");
+  const increaseQuantity = () =>
+    setValue("hoodieQuantity", hoodieQuantity + 1);
+  const decreaseQuantity = () => {
+    if (hoodieQuantity > 1) {
+      setValue("hoodieQuantity", hoodieQuantity - 1);
+    }
+  };
+
+
+
+
+
+  console.log(hoodieQuantity);
+  const editCart = () => {
+    let cart = localStorage.getItem("cart") 
+    if (
+      !cart
+    ) {
+      cart = {}
+    } else {
+      cart = JSON.parse(cart)
+    }
+    cart = {...cart, hoodieQuantity: (cart.hoodieQuantity ? cart.hoodieQuantity: 0) + hoodieQuantity}
+    localStorage.setItem("cart", JSON.stringify(cart))
+    return (cart)
+  };
+
+  // const wrapperFunction = () => {
+  //   handleSubmit();
+  //   editCart("Hoodie", hoodieQuantity);
+
+  // }
+
+
 
   return (
     <>
@@ -50,7 +101,6 @@ const Hoodie = ({
       <ClothingContainer isLargePic={isLargePic}>
         <ClothingWrapper>
           <ClothingImgWrapper isLargePic={isLargePic}>
-            
             <ArrowContainer>
               <ArrowWrapper>
                 <FaArrowAltCircleLeft onClick={prevSlide} />
@@ -60,7 +110,7 @@ const Hoodie = ({
               </ArrowWrapper>
             </ArrowContainer>
 
-            <ClothingImg {...picProps}  onClick={makeLarge}></ClothingImg>
+            <ClothingImg {...picProps} onClick={makeLarge}></ClothingImg>
           </ClothingImgWrapper>
         </ClothingWrapper>
         <ClothingWrapper>
@@ -72,7 +122,12 @@ const Hoodie = ({
               <Price>$29.99</Price>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
-              <SizeSelector name="hoodieSize" id="hoodieSize">
+              <SizeSelector
+                {...register("size")}
+                placeholder="Size"
+                id="size"
+                type="text"
+              >
                 <option value="small">SM</option>
                 <option value="medium">MD</option>
                 <option value="large">LG</option>
@@ -87,8 +142,14 @@ const Hoodie = ({
                   </CounterButtons>
                 </CounterWrapper>
                 <CounterWrapper>
-                  <CounterInput>
-                    {quantity}
+                  <CounterInput
+                    // quantity={quantity}
+                    {...register("hoodieQuantity")}
+                    placeholder="HoodieQuantity"
+                    id="hoodieQuantity"
+                    type="number"
+                  >
+                    {hoodieQuantity}
                   </CounterInput>
                 </CounterWrapper>
                 <CounterWrapper>
@@ -99,10 +160,12 @@ const Hoodie = ({
               </CounterContainer>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
-              <Btn>Add to Cart</Btn>
+              {/* <Btn onClick={handleSubmit(onSubmit)}>Add to Cart</Btn> */}
+              <Btn onClick={editCart} /*[handleSubmit(onSubmit), editCart("Hoodie", hoodieQuantity)]*/>Add to Cart</Btn>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
-              <Btn>Buy now</Btn>
+              {/* <Btn onClick={handleSubmit(onSubmit)}>Buy now</Btn> */}
+              <Btn onClick={handleSubmit(onSubmit)}>Buy now</Btn>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
               <DescriptionText>
