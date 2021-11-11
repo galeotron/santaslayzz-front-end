@@ -31,6 +31,69 @@ import backPic from "../../images/back-hoodie.webp";
 // import { SliderData } from "./SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
+export let cart = {
+  "Hoodie": {
+    "ItemInfo": {
+      "Description": "hoodie description",
+      "Price": 29.99,
+      "PriceId": "price_1JmhYcBWLJtzxyapnrAYJAdh",
+      "SizeQuantity": {
+        "sm": 0,
+        "md": 0,
+        "lg": 0,
+        "xl": 0
+      }
+    }
+  },
+  "Sweats": {
+    "ItemInfo": {
+      "Description": "sweats description",
+      "Price": 19.99,
+      "PriceId": "ID from stripe dashboard",
+      "SizeQuantity": {
+        "sm": 0,
+        "md": 0,
+        "lg": 0,
+        "xl": 0
+      }
+    }
+  },
+  "Shirt": {
+    "ItemInfo": {
+      "Description": "shirt description",
+      "Price": 9.99,
+      "PriceId": "ID from stripe dashboard",
+      "SizeQuantity": {
+        "sm": 0,
+        "md": 0,
+        "lg": 0,
+        "xl": 0
+      }
+    }
+  },
+  "Mousepad": {
+    "ItemInfo": {
+      "Description": "mousepad description",
+      "Price": 14.99,
+      "PriceId": "ID from stripe dashboard",
+      "SizeQuantity": {
+        "sm": 0,
+        "md": 0,
+        "lg": 0,
+        "xl": 0
+      }
+    }
+  },
+  "Tournament Ticket": {
+    "ItemInfo": {
+      "Description": "Tournament ticket description",
+      "Price": 10.00,
+      "PriceId": "ID from stripe dashboard",
+      "Quantity": 0
+    }
+  }
+}
+
 const Hoodie = ({
   nextSlide,
   prevSlide,
@@ -48,51 +111,65 @@ const Hoodie = ({
   const { register, watch, handleSubmit, setValue } = useForm({
     defaultValues: {
       hoodieQuantity: 1,
+      size: "sm"
     },
   });
   const onSubmit = async (data) => {
-    const cart = editCart()
-    const response = await axios.post("http://localhost:5000/store/create-checkout-session", cart, {headers: {"Content-Type": "text/plain"}})
-    console.log(response)
-    window.location.href = response.data.url
+    const cart = editCart();
+    const response = await axios.post(
+      "http://localhost:5000/store/create-checkout-session",
+      cart
+      // { headers: { "Content-Type": "text/plain" } }
+    );
+
+    console.log(response);
+    window.location.href = response.data.url;
     console.log(data);
   };
 
   const hoodieQuantity = watch("hoodieQuantity");
-  const increaseQuantity = () =>
-    setValue("hoodieQuantity", hoodieQuantity + 1);
+  const increaseQuantity = () => setValue("hoodieQuantity", hoodieQuantity + 1);
   const decreaseQuantity = () => {
     if (hoodieQuantity > 1) {
       setValue("hoodieQuantity", hoodieQuantity - 1);
     }
   };
 
+  const size = watch("size");
 
 
-
-
-  console.log(hoodieQuantity);
   const editCart = () => {
-    let cart = localStorage.getItem("cart") 
-    if (
-      !cart
-    ) {
-      cart = {}
-    } else {
-      cart = JSON.parse(cart)
+    let localCart = localStorage.getItem("localCart");
+    if (!localCart) {
+       localCart = cart;
     }
-    cart = {...cart, hoodieQuantity: (cart.hoodieQuantity ? cart.hoodieQuantity: 0) + hoodieQuantity}
-    localStorage.setItem("cart", JSON.stringify(cart))
-    return (cart)
+    else {
+      cart = JSON.parse(localStorage.getItem('localCart'));
+    }
+
+
+    switch (size) {
+      case "sm":
+        cart.Hoodie.ItemInfo.SizeQuantity.sm = cart.Hoodie.ItemInfo.SizeQuantity.sm + hoodieQuantity;
+        break;
+      case "md":
+        cart.Hoodie.ItemInfo.SizeQuantity.md = cart.Hoodie.ItemInfo.SizeQuantity.md + hoodieQuantity;
+        break;
+      case "lg":
+        cart.Hoodie.ItemInfo.SizeQuantity.lg = cart.Hoodie.ItemInfo.SizeQuantity.lg + hoodieQuantity;
+        break;
+      case "xl":
+        cart.Hoodie.ItemInfo.SizeQuantity.xl = cart.Hoodie.ItemInfo.SizeQuantity.xl + hoodieQuantity;
+        break;
+      default:
+    }
+    
+    localCart = {...cart};
+    
+    
+    localStorage.setItem("localCart", JSON.stringify(localCart));
+    return localCart;
   };
-
-  // const wrapperFunction = () => {
-  //   handleSubmit();
-  //   editCart("Hoodie", hoodieQuantity);
-
-  // }
-
-
 
   return (
     <>
@@ -127,19 +204,19 @@ const Hoodie = ({
                 placeholder="Size"
                 id="size"
                 type="text"
+                value={size}
+
               >
-                <option value="small">SM</option>
-                <option value="medium">MD</option>
-                <option value="large">LG</option>
-                <option value="extraLarge">XL</option>
+                <option value="sm">SM</option>
+                <option value="md">MD</option>
+                <option value="lg">LG</option>
+                <option value="xl">XL</option>
               </SizeSelector>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
               <CounterContainer>
                 <CounterWrapper>
-                  <CounterButtons onClick={decreaseQuantity}>
-                    -
-                  </CounterButtons>
+                  <CounterButtons onClick={decreaseQuantity}>-</CounterButtons>
                 </CounterWrapper>
                 <CounterWrapper>
                   <CounterInput
@@ -153,15 +230,19 @@ const Hoodie = ({
                   </CounterInput>
                 </CounterWrapper>
                 <CounterWrapper>
-                  <CounterButtons onClick={increaseQuantity}>
-                    +
-                  </CounterButtons>
+                  <CounterButtons onClick={increaseQuantity}>+</CounterButtons>
                 </CounterWrapper>
               </CounterContainer>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
               {/* <Btn onClick={handleSubmit(onSubmit)}>Add to Cart</Btn> */}
-              <Btn onClick={editCart} /*[handleSubmit(onSubmit), editCart("Hoodie", hoodieQuantity)]*/>Add to Cart</Btn>
+              <Btn
+                onClick={
+                  editCart
+                } /*[handleSubmit(onSubmit), editCart("Hoodie", hoodieQuantity)]*/
+              >
+                Add to Cart
+              </Btn>
             </DescriptionButtonsWrapper>
             <DescriptionButtonsWrapper>
               {/* <Btn onClick={handleSubmit(onSubmit)}>Buy now</Btn> */}

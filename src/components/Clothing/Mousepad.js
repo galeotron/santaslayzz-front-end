@@ -28,6 +28,8 @@ import backPic from "../../images/back-mousepad.webp";
 // import ImageSlider from "./ImageSlider";
 // import { SliderData } from "./SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import cart from "./index.js"
+
 
 const Mousepad = ({
   nextSlide,
