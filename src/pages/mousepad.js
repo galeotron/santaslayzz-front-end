@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
-import Sidebar from "../Sidebar";
-import Navbar from "../components/Navbar";
+
 import Mousepad from "../components/Clothing";
 import { Length } from "../components/Clothing/SliderData";
 import SidebarCart from "../SidebarCart";
+import NavbarStore from "../components/NavbarStore";
 
 const MousepadPage = () => {
   const [isLargePic, setLargePic] = useState(false);
@@ -13,17 +13,6 @@ const MousepadPage = () => {
     setLargePic(!isLargePic);
   };
 
-  const [quantity, setQuantity] = useState(1);
-
-  const increaseQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
-    }
-  };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,22 +39,22 @@ const MousepadPage = () => {
   return (
     <div>
       <SidebarCart isCartOpen={isCartOpen} toggleCart={toggleCart} />
-      <Sidebar
+      {/* <Sidebar
         isCartOpen={isCartOpen}
         toggleCart={toggleCart}
         isOpen={isOpen}
         toggle={toggle}
-      />
-      <Navbar toggle={toggle} />
+      /> */}
+      <NavbarStore toggle={toggle} toggleCart={toggleCart} />
       <Mousepad
         nextSlide={nextSlide}
         prevSlide={prevSlide}
         currentSlide={currentSlide}
         makeLarge={makeLarge}
         isLargePic={isLargePic}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
-        quantity={quantity}
+        // increaseQuantity={increaseQuantity}
+        // decreaseQuantity={decreaseQuantity}
+        // quantity={quantity}
       ></Mousepad>
       <Footer />
     </div>

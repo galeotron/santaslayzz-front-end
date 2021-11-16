@@ -77,7 +77,7 @@ export const MobileNavLogoReal = styled.img`
 export const MobileIcon = styled.div`
   display: none;
 
-  @media screen and (max-width: 900px) {
+  /* @media screen and (max-width: 900px) {
     display: block;
     position: absolute;
     top: 0;
@@ -93,7 +93,7 @@ export const MobileIcon = styled.div`
   &:hover {
     transition: all 400ms ease-in-out;
     color: #8dbc00;
-  }
+  } */
 `;
 
 export const NavMenu = styled.ul`
@@ -286,9 +286,9 @@ export const NavBtn = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 900px) {
+  /* @media screen and (max-width: 900px) {
     display: none;
-  }
+  } */
 `;
 
 export const NavBtnLink = styled.div`

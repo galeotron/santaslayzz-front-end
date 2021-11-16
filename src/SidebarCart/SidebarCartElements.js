@@ -150,6 +150,10 @@ export const CartContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media screen and (max-width: 700px) {
+        height: calc(100vh - 180px);
+    }
 `;
 
 export const CartItemWrapper = styled.div`

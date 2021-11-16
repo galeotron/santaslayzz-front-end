@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
-import Sidebar from "../Sidebar";
-import Navbar from "../components/Navbar";
+// import Sidebar from "../Sidebar";
+// import Navbar from "../components/Navbar";
 import Hoodie from "../components/Clothing";
 import { Length } from "../components/Clothing/SliderData";
 import SidebarCart from "../SidebarCart";
+import NavbarStore from "../components/NavbarStore";
 
 const HoodiePage = () => {
   const [isLargePic, setLargePic] = useState(false);
@@ -83,13 +84,13 @@ const HoodiePage = () => {
   return (
     <div>
       <SidebarCart isCartOpen={isCartOpen} toggleCart={toggleCart} />
-      <Sidebar
+      {/* <Sidebar
         isCartOpen={isCartOpen}
         toggleCart={toggleCart}
         isOpen={isOpen}
         toggle={toggle}
-      />
-      <Navbar toggle={toggle} />
+      /> */}
+      <NavbarStore toggle={toggle} toggleCart={toggleCart} />
       <Hoodie
         nextSlide={nextSlide}
         prevSlide={prevSlide}

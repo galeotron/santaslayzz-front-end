@@ -31,68 +31,77 @@ import backPic from "../../images/back-hoodie.webp";
 // import { SliderData } from "./SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
+
 export let cart = {
-  "Hoodie": {
-    "ItemInfo": {
-      "Description": "hoodie description",
-      "Price": 29.99,
-      "PriceId": "price_1JmhYcBWLJtzxyapnrAYJAdh",
-      "SizeQuantity": {
-        "sm": 0,
-        "md": 0,
-        "lg": 0,
-        "xl": 0
-      }
-    }
-  },
-  "Sweats": {
-    "ItemInfo": {
-      "Description": "sweats description",
-      "Price": 19.99,
-      "PriceId": "ID from stripe dashboard",
-      "SizeQuantity": {
-        "sm": 0,
-        "md": 0,
-        "lg": 0,
-        "xl": 0
-      }
-    }
-  },
-  "Shirt": {
-    "ItemInfo": {
-      "Description": "shirt description",
-      "Price": 9.99,
-      "PriceId": "ID from stripe dashboard",
-      "SizeQuantity": {
-        "sm": 0,
-        "md": 0,
-        "lg": 0,
-        "xl": 0
-      }
-    }
-  },
-  "Mousepad": {
-    "ItemInfo": {
-      "Description": "mousepad description",
-      "Price": 14.99,
-      "PriceId": "ID from stripe dashboard",
-      "SizeQuantity": {
-        "sm": 0,
-        "md": 0,
-        "lg": 0,
-        "xl": 0
-      }
-    }
-  },
-  "Tournament Ticket": {
-    "ItemInfo": {
-      "Description": "Tournament ticket description",
-      "Price": 10.00,
-      "PriceId": "ID from stripe dashboard",
+  "Items": [
+    {
+      "Name": "SmallHoodie",
       "Quantity": 0
+    },
+    {
+      "Name": "MediumHoodie",
+      "Quantity": 0
+    },  
+    {
+      "Name": "LargeHoodie",
+      "Quantity": 0
+    },
+    {
+      "Name": "XLargeHoodie",
+      "Quantity": 0
+    },
+    {
+      "Name": "SmallShirt",
+      "Quantity": 0
+    },
+    {
+      "Name": "MediumShirt",
+      "Quantity": 0
+    },  
+    {
+      "Name": "LargeShirt",
+      "Quantity": 0
+    },
+    {
+      "Name": "XLargeShirt",
+      "Quantity": 0
+    },
+    {
+      "Name": "SmallSweats",
+      "Quantity": 0
+    },
+    {
+      "Name": "MediumSweats",
+      "Quantity": 0
+    },  
+    {
+      "Name": "LargeSweats",
+      "Quantity": 0
+    },
+    {
+      "Name": "XLargeSweats",
+      "Quantity": 0
+    },
+    {
+      "Name": "Mousepad",
+      "Quantity": 0
+    },
+    {
+      "Name": "TournamentTicket",
+      "Quantity": 0,
+      "TeamName": "",
+      "PlayerName1": "",
+      "OfficialName1": "",
+      "PlayerName2": "",
+      "OfficialName2": "",
+      "PlayerName3": "",
+      "OfficialName3": "",
+      "PlayerName4": "",
+      "OfficialName4": "",
+      "DiscordName": ""
     }
-  }
-}
+    
+]}
 
 const Hoodie = ({
   nextSlide,
@@ -150,16 +159,16 @@ const Hoodie = ({
 
     switch (size) {
       case "sm":
-        cart.Hoodie.ItemInfo.SizeQuantity.sm = cart.Hoodie.ItemInfo.SizeQuantity.sm + hoodieQuantity;
+        cart.Items[0].Quantity = cart.Items[0].Quantity + hoodieQuantity;
         break;
       case "md":
-        cart.Hoodie.ItemInfo.SizeQuantity.md = cart.Hoodie.ItemInfo.SizeQuantity.md + hoodieQuantity;
+        cart.Items[1].Quantity = cart.Items[1].Quantity + hoodieQuantity;
         break;
       case "lg":
-        cart.Hoodie.ItemInfo.SizeQuantity.lg = cart.Hoodie.ItemInfo.SizeQuantity.lg + hoodieQuantity;
+        cart.Items[2].Quantity = cart.Items[2].Quantity + hoodieQuantity;
         break;
       case "xl":
-        cart.Hoodie.ItemInfo.SizeQuantity.xl = cart.Hoodie.ItemInfo.SizeQuantity.xl + hoodieQuantity;
+        cart.Items[3].Quantity = cart.Items[3].Quantity + hoodieQuantity;
         break;
       default:
     }

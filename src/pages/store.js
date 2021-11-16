@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Store from "../store";
-import Sidebar from "../Sidebar";
+// import Sidebar from "../Sidebar";
 import Footer from "../components/Footer";
 import NavbarStore from "../components/NavbarStore";
 import SidebarCart from "../SidebarCart";
@@ -27,12 +27,12 @@ const StorePage = () => {
   return (
     <div>
       <SidebarCart isCartOpen={isCartOpen} toggleCart={toggleCart} />
-      <Sidebar
+      {/* <Sidebar
         isCartOpen={isCartOpen}
         toggleCart={toggleCart}
         isOpen={isOpen}
         toggle={toggle}
-      />
+      /> */}
       <NavbarStore toggle={toggle} toggleCart={toggleCart} />
       <Store setStyle={setStyle} displayType={displayType}></Store>
       <Footer />

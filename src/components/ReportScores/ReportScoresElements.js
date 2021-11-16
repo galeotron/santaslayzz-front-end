@@ -53,8 +53,8 @@ export const ItemContainer = styled.div`
     grid-template-columns: 200px 200px;
     /* grid-auto-columns: px; */
     grid-auto-rows: 70px;
-    grid-row-gap: 10px;
-    grid-column-gap: 20px;
+    row-gap: 10px;
+    column-gap: 20px;
 
     @media screen and (max-width: 450px) {
     grid-template-columns: 150px 150px;

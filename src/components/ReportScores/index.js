@@ -17,12 +17,16 @@ import {
 } from "./ReportScoresElements";
 
 
+
+
 const ReportScores = () => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     console.log(data);
   };
+
+
 
   return (
     <>
@@ -49,8 +53,10 @@ const ReportScores = () => {
               <DropText>Team Name:</DropText>
               <TourneyInput
                 maxLength="14"
-                {...register("teamName")}
-                placeholder="TeamName"
+                {...register("teamName", {
+                  required: <p>Must enter team name</p>
+                })}
+                placeholder="Team Name"
                 id="teamName"
                 type="text"
                 
@@ -60,8 +66,10 @@ const ReportScores = () => {
               <DropText>Discord Name:</DropText>
               <TourneyInput
                 maxLength="14"
-                {...register("discordName")}
-                placeholder="DiscordName"
+                {...register("discordName", {
+                  required: <p>Must enter discord name</p>
+                })}
+                placeholder="Discord Name"
                 id="discordName"
                 type="text"
                 
@@ -70,8 +78,10 @@ const ReportScores = () => {
             <ItemWrapper>
               <DropText>Game 1 Total Kills:</DropText>
               <TourneyInput
-                {...register("game1Kills")}
-                placeholder="Game1Kills"
+                {...register("game1Kills", {
+                  required: <p>Must enter game 1 kills</p>
+                })}
+                placeholder="Game 1 Kills"
                 id="game1Kills"
                 
                 type="number"
@@ -97,9 +107,11 @@ const ReportScores = () => {
             <ItemWrapper>
               <DropText>Game 2 Total Kills:</DropText>
               <TourneyInput
-                {...register("game2Kills")}
+                {...register("game2Kills", {
+                  required: <p>Must enter game 2 kills</p>
+                })}
                 id="game2Kills"
-                placeholder="Game2Kills"
+                placeholder="Game 2 Kills"
                 type="number"
                 
               ></TourneyInput>
@@ -125,9 +137,11 @@ const ReportScores = () => {
               <DropText>Game 3 Total Kills:</DropText>
               <TourneyInput
                 
-                {...register("game3Kills")}
+                {...register("game3Kills", {
+                  required: <p>Must enter game 3 kills</p>
+                })}
                 id="game3Kills"
-                placeholder="Game3Kills"
+                placeholder="Game 3 Kills"
                 type="number"
                 
               ></TourneyInput>
@@ -153,9 +167,11 @@ const ReportScores = () => {
               <DropText>Game 4 Total Kills:</DropText>
               <TourneyInput
                 type="number"
-                {...register("game4Kills")}
+                {...register("game4Kills", {
+                  required: <p>Must enter game 4 kills</p>
+                })}
                 id="game4Kills"
-                placeholder="Game4Kills"
+                placeholder="Game 4 Kills"
                 
               ></TourneyInput>
             </ItemWrapper>
