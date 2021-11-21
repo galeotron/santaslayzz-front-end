@@ -88,6 +88,7 @@ export let cart = {
     },
     {
       "Name": "TournamentTicket",
+      "TournamentName": "WarzoneDuos",
       "Quantity": 0,
       "TeamName": "",
       "PlayerName1": "",

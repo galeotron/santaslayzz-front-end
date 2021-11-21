@@ -91,6 +91,7 @@ let cart = {
     },
     {
       Name: "TournamentTicket",
+      TournamentName: "WarzoneDuos",
       Quantity: 0,
       TeamName: "",
       PlayerName1: "",
@@ -105,6 +106,28 @@ let cart = {
     },
   ],
 };
+
+let TournamentDB = {
+  "teamName": "",
+  "discordName": "",
+  "playerName1": "",
+  "officialName1": "",
+  "playerName2": "",
+  "officialName2": "",
+  "playerName3": "",
+  "officialName3": "",
+  "playerName4": "",
+  "officialName4": "",
+  "game1Kills": null,
+  "game1Placement": null,
+  "game2Kills": null,
+  "game2Placement": null,
+  "game3Kills": null,
+  "game3Placement": null,
+  "game4Kills": null,
+  "game4Placement": null,
+  "passcode": null
+}
 
 const SignUp = () => {
   const { register, watch, handleSubmit, setValue } = useForm({
@@ -128,18 +151,61 @@ const SignUp = () => {
 
   const total = quantity * 10;
 
+
   const onSubmit = async (data) => {
+
+
+    const TournamentDB = editTournament(data);
+    const response2 = await axios.put(
+      "http://localhost:5000/tournament/register/" + data.teamName,
+      TournamentDB
+      // {headers: { "Access-Control-Allow-Origin": ""}}
+    );
+
+
     const cart = editCart(data);
     const response = await axios.post(
       "http://localhost:5000/store/create-checkout-session",
       cart
       // { headers: { "Content-Type": "text/plain" } }
+      
     );
 
     console.log(response);
+    window.location.href = response2.data.url;
     window.location.href = response.data.url;
+
     console.log(data);
   };
+
+  const editTournament = (data) => {
+    let localTournamentDB = localStorage.getItem("localTournamentDB");
+    if (!localTournamentDB) {
+      localTournamentDB = TournamentDB;
+    } else {
+      TournamentDB = JSON.parse(localStorage.getItem("localTournamentDB"));
+    }
+
+
+    TournamentDB.teamName = data.teamName;
+    TournamentDB.playerName1 = data.player1Name;
+    TournamentDB.officialName1 = data.player1OfficialName;
+    TournamentDB.playerName2 = data.player2Name;
+    TournamentDB.officialName2 = data.player2OfficialName;
+    TournamentDB.playerName3 = data.player3Name;
+    TournamentDB.officialName3 = data.player3OfficialName;
+    TournamentDB.playerName4 = data.player4Name;
+    TournamentDB.officialName4 = data.player4OfficialName;
+    TournamentDB.discordName = data.discordName;
+
+    localTournamentDB = { ...TournamentDB };
+
+    localStorage.setItem("localTournamentDB", JSON.stringify(localTournamentDB));
+    
+    
+    
+    return localTournamentDB;
+  }
 
   const editCart = (data) => {
     let localCart = localStorage.getItem("localCart");
@@ -148,6 +214,7 @@ const SignUp = () => {
     } else {
       cart = JSON.parse(localStorage.getItem("localCart"));
     }
+
 
     cart.Items[13].Quantity = quantity;
     cart.Items[13].TeamName = data.teamName;
@@ -164,7 +231,35 @@ const SignUp = () => {
     localCart = { ...cart };
 
     localStorage.setItem("localCart", JSON.stringify(localCart));
+    
+    // let localTournamentDB = localStorage.getItem("localTournamentDB");
+    // if (!localTournamentDB) {
+    //   localTournamentDB = TournamentDB;
+    // } else {
+    //   TournamentDB = JSON.parse(localStorage.getItem("localTournamentDB"));
+    // }
+
+
+    // TournamentDB.teamName = data.teamName;
+    // TournamentDB.playerName1 = data.player1Name;
+    // TournamentDB.officialName1 = data.player1OfficialName;
+    // TournamentDB.playerName2 = data.player2Name;
+    // TournamentDB.officialName2 = data.player2OfficialName;
+    // TournamentDB.playerName3 = data.player3Name;
+    // TournamentDB.officialName3 = data.player3OfficialName;
+    // TournamentDB.playerName4 = data.player4Name;
+    // TournamentDB.officialName4 = data.player4OfficialName;
+    // TournamentDB.discordName = data.discordName;
+
+    // localTournamentDB = { ...TournamentDB };
+
+    // localStorage.setItem("localTournamentDB", JSON.stringify(localTournamentDB));
+    
+    
+    
     return localCart;
+
+
   };
 
   return (

@@ -15,16 +15,81 @@ import {
   FootSpacer,
   DropText
 } from "./ReportScoresElements";
+import axios from "axios";
 
+let TournamentDB = {
+  "teamName": "",
+  "discordName": "",
+  "playerName1": "",
+  "officialName1": "",
+  "playerName2": "",
+  "officialName2": "",
+  "playerName3": "",
+  "officialName3": "",
+  "playerName4": "",
+  "officialName4": "",
+  "game1Kills": null,
+  "game1Placement": null,
+  "game2Kills": null,
+  "game2Placement": null,
+  "game3Kills": null,
+  "game3Placement": null,
+  "game4Kills": null,
+  "game4Placement": null,
+  "passcode": null
+}
 
 
 
 const ReportScores = () => {
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
+
+
+    const TournamentDB = editTournament(data);
+    const response = await axios.put(
+      "http://localhost:5000/tournament/reporting/" + data.teamName,
+      TournamentDB
+      // {headers: { "Access-Control-Allow-Origin": ""}}
+    );
+
+    console.log(response);
+    window.location.href = response.data.url;
+
     console.log(data);
   };
+
+  const editTournament = (data) => {
+    let localTournamentDB = localStorage.getItem("localTournamentDB");
+    if (!localTournamentDB) {
+      localTournamentDB = TournamentDB;
+    } else {
+      TournamentDB = JSON.parse(localStorage.getItem("localTournamentDB"));
+    }
+
+
+    TournamentDB.teamName = data.teamName;
+    TournamentDB.game1Kills = data.game1Kills;
+    TournamentDB.game1Placement = data.game1Placement;
+    TournamentDB.game2Kills = data.game2Kills;
+    TournamentDB.game2Placement = data.game2Kills;
+    TournamentDB.game3Kills = data.game3Kills;
+    TournamentDB.game3Placement = data.game3Placement;
+    TournamentDB.game4Kills = data.game4Kills;
+    TournamentDB.game4Placement = data.game4Placement;
+    TournamentDB.discordName = data.discordName;
+    TournamentDB.passcode = data.passcode;
+
+    localTournamentDB = { ...TournamentDB };
+
+    localStorage.setItem("localTournamentDB", JSON.stringify(localTournamentDB));
+    
+    
+    
+    return localTournamentDB;
+  }
 
 
 
@@ -37,17 +102,20 @@ const ReportScores = () => {
           <Description>
             One player from each team reports scores for team
           </Description>
-          <label htmlFor="tourneyName">Choose a tournament:</label>
-            <TourneyDrop
-              {...register("tourneyName")}
-              placeholder="TourneyName"
-              id="tourneyName"
-              type="text"
+          <label htmlFor="passcode">Team Passcode:</label>
+            <TourneyInput
+              maxLength="4"
+              {...register("passcode", {
+                required: <p>Must enter passcode</p>
+              })}
+              placeholder="passcode"
+              id="passcode"
+              type="number"
               
             >
-              <option value="Warzone">Warzone</option>
-              <option value="Apex">Apex</option>
-            </TourneyDrop>
+              {/* <option value="Warzone">Warzone</option>
+              <option value="Apex">Apex</option> */}
+            </TourneyInput>
           <ItemContainer>
             <ItemWrapper>
               <DropText>Team Name:</DropText>
