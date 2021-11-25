@@ -12,6 +12,8 @@ import SweatsPage from './pages/sweats';
 import MousepadPage from './pages/mousepad';
 import ShirtPage from './pages/shirt';
 import CartPage from './pages/CartPage';
+import successPage from './pages/successPage';
+import adminPage from './pages/adminPage';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/store/mousepad" component={MousepadPage} exact />
         <Route path="/store/shirt" component={ShirtPage} exact />
         <Route path="/cart" component={CartPage} exact />
+        <Route path="/checkout?success=true" component={successPage} exact />
+        <Route path="/tournament/admin" component={adminPage} exact />
       </Switch>
     </Router>
   );
