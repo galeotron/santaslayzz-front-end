@@ -45,20 +45,38 @@ const ReportScores = () => {
 
   const { register, handleSubmit } = useForm();
 
+  function handleErrors(err) {
+    if (err.response) {
+      if (err.response.status === 500) {
+      console.log(err.response)
+      console.log(err.response.statusText)
+      window.alert("No team with that name registered.")
+      window.location.href = "http://localhost:3000/tournaments/scores"
+    }
+      else if (err.response.status === 401) {
+        window.alert("Incorrect passcode")
+      window.location.href = "http://localhost:3000/tournaments/scores"
+      }
+      else {
+        window.alert("Something went wrong, please try again")
+        window.location.href = "http://localhost:3000/tournaments/scores"
+      }
+  }
+}
+
   const onSubmit = async (data) => {
+
 
 
     const TournamentDB = editTournament(data);
     const response = await axios.put(
       "http://localhost:5000/tournament/reporting/" + data.teamName,
       TournamentDB
-      // {headers: { "Access-Control-Allow-Origin": ""}}
-    );
+    )
 
-    console.log(response);
-    window.location.href = response.data.url;
+    .then(window.location.href = "http://localhost:3000/tournament/success")
+    .catch(handleErrors)
 
-    console.log(data);
   };
 
   const editTournament = (data) => {
@@ -70,11 +88,13 @@ const ReportScores = () => {
     }
 
 
+
+
     TournamentDB.teamName = data.teamName;
     TournamentDB.game1Kills = data.game1Kills;
     TournamentDB.game1Placement = data.game1Placement;
     TournamentDB.game2Kills = data.game2Kills;
-    TournamentDB.game2Placement = data.game2Kills;
+    TournamentDB.game2Placement = data.game2Placement;
     TournamentDB.game3Kills = data.game3Kills;
     TournamentDB.game3Placement = data.game3Placement;
     TournamentDB.game4Kills = data.game4Kills;
@@ -262,7 +282,7 @@ const ReportScores = () => {
               </TourneyDrop>
             </ItemWrapper>
           </ItemContainer>
-          <ReportBtn onClick={handleSubmit(onSubmit)}>
+          <ReportBtn onClick={handleSubmit(onSubmit)} >
             Submit
           </ReportBtn>
           

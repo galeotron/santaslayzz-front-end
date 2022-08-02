@@ -156,11 +156,11 @@ const SignUp = () => {
 
 
     const TournamentDB = editTournament(data);
-    const response2 = await axios.put(
-      "http://localhost:5000/tournament/register/" + data.teamName,
-      TournamentDB
-      // {headers: { "Access-Control-Allow-Origin": ""}}
-    );
+    // const response2 = await axios.put(
+    //   "http://localhost:5000/tournament/register/" + data.teamName,
+    //   TournamentDB
+    //   // {headers: { "Access-Control-Allow-Origin": ""}}
+    // );
 
 
     const cart = editCart(data);
@@ -172,7 +172,7 @@ const SignUp = () => {
     );
 
     console.log(response);
-    window.location.href = response2.data.url;
+    // window.location.href = response2.data.url;
     window.location.href = response.data.url;
 
     console.log(data);

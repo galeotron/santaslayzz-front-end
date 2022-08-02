@@ -19,3 +19,7 @@ export const TeamWrapper = styled.div`
 export const TeamInfoWrapper = styled.div`
     border: 2px solid blue;
 `;
+
+export const TournamentTable = styled.table`
+    border: solid 1px black;
+`;

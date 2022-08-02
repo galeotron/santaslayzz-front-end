@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Success from "../components/Success";
+import SignIn from "../components/SignIn/SignIn";
 import SidebarCart from "../SidebarCart";
 import Sidebar from "../Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const SuccessPage = () => {
+const SignInPage = ({setIsAuth, isAuth}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -28,10 +28,10 @@ const SuccessPage = () => {
         toggle={toggle}
       />
       <Navbar toggle={toggle} />
-      <Success></Success>
+      <SignIn setIsAuth={setIsAuth} isAuth={isAuth}></SignIn>
       <Footer />
     </div>
   );
 };
 
-export default SuccessPage;
+export default SignInPage;

@@ -87,12 +87,13 @@ export const PicsContainer = styled.div`
     bottom: 0;
     right: 0;
 
+
+    @media screen and (max-width: 900px) {
+        top: 80px;
+    }
+
     @media screen and (max-width: 640px) {
-        flex-direction: row;
-        position: relative;
-        left: 0;
-        top: 300px;
-        width: 100vw;
+        display: none;
         
     }
 `;

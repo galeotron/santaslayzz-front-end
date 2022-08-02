@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
-import Sweats from "../components/Clothing";
+import Sweats from "../components/Clothing/Sweats";
 import { Length } from "../components/Clothing/SliderData";
 import SidebarCart from "../SidebarCart";
 import NavbarStore from "../components/NavbarStore";

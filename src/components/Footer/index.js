@@ -11,7 +11,10 @@ import {
   FooterWrap,
   SocialMediaWrap,
   SocialIconLink,
+  AdminLink,
 } from "./FooterElements";
+
+
 
 const Footer = () => {
   return (
@@ -55,6 +58,9 @@ const Footer = () => {
           </SocialIconLink>
         </SocialMediaWrap>
       </FooterWrap>
+      <AdminLink to="/signin">
+        <p>Admin</p>
+      </AdminLink>
     </FooterContainer>
   );
 };

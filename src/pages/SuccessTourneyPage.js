@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Success from "../components/Success";
+import SuccessTourney from "../components/SuccessTourney";
 import SidebarCart from "../SidebarCart";
 import Sidebar from "../Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const SuccessPage = () => {
+const SuccessTourneyPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -28,10 +28,10 @@ const SuccessPage = () => {
         toggle={toggle}
       />
       <Navbar toggle={toggle} />
-      <Success></Success>
+      <SuccessTourney></SuccessTourney>
       <Footer />
     </div>
   );
 };
 
-export default SuccessPage;
+export default SuccessTourneyPage;

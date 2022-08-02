@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Footer from "../components/Footer";
 // import Sidebar from "../Sidebar";
 // import Navbar from "../components/Navbar";
-import Hoodie from "../components/Clothing";
+import Hoodie from "../components/Clothing/Hoodie";
 import { Length } from "../components/Clothing/SliderData";
 import SidebarCart from "../SidebarCart";
 import NavbarStore from "../components/NavbarStore";

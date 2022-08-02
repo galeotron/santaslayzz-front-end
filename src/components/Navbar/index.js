@@ -11,8 +11,7 @@ import {
   NavBtn,
   NavBtnLink,
   MobileNavLogo,
-  NavLinksSpan1,
-  NavLinksSpan2,
+
   NavLogoReal,
   MobileNavLogoReal,
 } from "./NavbarElements";
@@ -71,10 +70,7 @@ const Navbar = ({ toggle, isMediaPlaying }) => {
             <NavMenu>
               <NavItem>
                 <NavLinks to="/about">
-                  <NavLinksSpan1 aria-hidden="true">About</NavLinksSpan1>About
-                  <NavLinksSpan2 id="span" aria-hidden="true">
-                    About
-                  </NavLinksSpan2>
+                  About
                 </NavLinks>
               </NavItem>
               <NavItem>

@@ -5,15 +5,16 @@ import {Link as LinkR} from 'react-router-dom'
 export const SidebarContainer = styled.aside`
     position: fixed;
     z-index: 999;
-    width: 350px;
+    width: 390px;
     height: 100%;
     background: black;
     display: grid;
     top: 0px;
-    right: 0;
+    /* right: 0; */
     transition: 0.3s ease-in-out;
     opacity: ${({isCartOpen}) => (isCartOpen ? '100%' : '0')};
     right: ${({isCartOpen}) => (isCartOpen ? '0' : '-100%')};
+    overflow: scroll;
 
     @media screen and (max-width: 700px) {
             width: 100%;
@@ -42,7 +43,7 @@ outline: none;
 
 export const SidebarWrapper = styled.div`
     color: #fff;
-    border: 2px solid red;
+    /* border: 2px solid red; */
 `;
 
 export const SidebarMenu = styled.ul`
@@ -145,7 +146,7 @@ export const SidebarFooterIcon = styled.a`
 export const Title = styled.h1``;
 
 export const CartContainer = styled.div`
-    border: 2px solid green;
+    /* border: 2px solid green; */
     height: calc(100vh - 135px);
     display: flex;
     flex-direction: column;
@@ -157,28 +158,34 @@ export const CartContainer = styled.div`
 `;
 
 export const CartItemWrapper = styled.div`
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
+    margin-top: 5px;
     margin-right: 20px;
     margin-left: 20px;
+    margin-bottom: 15px;
     justify-content: space-between;
 `;
 
 export const CartPicWrapper = styled.div`
-    border: 2px dotted red;
+    /* border: 2px dotted red; */
     width: 33%;
 `;
 
 export const CartPic = styled.img`
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    max-width: 100%;
 `;
 
 export const CartTextContainer = styled.div`
-    border: 2px dotted orange;
+    /* border: 2px dotted orange; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export const CartTextWrapper = styled.div`
-    border: 2px dotted white;
+    /* border: 2px dotted white; */
 `;
 
 export const DescriptionText = styled.p`
@@ -223,13 +230,13 @@ export const CounterInput = styled.span`
 `;
 
 export const CounterRemoveContainer = styled.div`
-    border: 2px solid yellow;
+    /* border: 2px solid yellow; */
     display: flex;
     align-items: center;
 `;
 
 export const RemoveLinkWrap = styled.div`
-    border: 2px solid red;
+    /* border: 2px solid red; */
 
     &:hover {
     cursor: pointer;
@@ -240,7 +247,7 @@ export const RemoveLinkTxt = styled.p`
     text-decoration: underline;
 `;
 
-export const CheckoutBtnLink = styled(LinkR)`
+export const CheckoutBtnLink = styled.div`
   cursor: pointer;
   display: inline-block;
   border: #fe212d 0.125em solid;
@@ -249,6 +256,7 @@ export const CheckoutBtnLink = styled(LinkR)`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
 
   text-shadow: 0 0 0.1em hsl(0 0% 100% / 0.5), 0 0 0.5em currentColor;
 

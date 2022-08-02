@@ -1,8 +1,9 @@
 import React from 'react'
 import Admin from '../components/Admin'
 import Navbar from '../components/Navbar'
+import {withRouter} from 'react-router-dom'
 
-const adminPage = () => {
+const AdminPage = () => {
     return (
         <>
             <Navbar></Navbar>
@@ -11,4 +12,4 @@ const adminPage = () => {
     )
 }
 
-export default adminPage
+export default withRouter(AdminPage)

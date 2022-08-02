@@ -43,7 +43,7 @@ export const NavLogo = styled(LinkR)`
   font-size: 1.5rem;
   display: flex;
   align-items: center;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   font-weight: bold;
   text-decoration: none;
 
@@ -101,7 +101,7 @@ export const NavMenu = styled.ul`
   align-items: center;
   list-style: none;
   text-align: center;
-  margin-right: -22px;
+  margin-right: 80px;
 
   @media screen and (max-width: 900px) {
     display: none;
@@ -122,6 +122,8 @@ export const NavLinks = styled(LinkR)`
   cursor: pointer;
   font-size: 20px;
   position: relative;
+  z-index: 100;
+
 
   &:hover,
   &:focus {
@@ -173,114 +175,7 @@ export const NavLinks = styled(LinkR)`
   }
 `;
 
-export const NavLinksSpan1 = styled.span`
-  border: 5px solid red;
-
-  /* visibility: hidden; */
-  color: red;
-
-  position: absolute;
-  align-items: center;
-
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  transform: translate(-0.1em, -0.05em);
-
-  &:hover,
-  &:focus {
-    visibility: visible;
-    z-index: 999;
-    color: red;
-
-    animation: glitch 2000ms;
-
-    @keyframes glitch {
-      0% {
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-          -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      14% {
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-          -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      15% {
-        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-          0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      49% {
-        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-          0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      50% {
-        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-          0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      99% {
-        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-          0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      100% {
-        text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
-          -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-    }
-  }
-`;
-
-export const NavLinksSpan2 = styled.span`
-  display: none;
-
-  position: absolute;
-  align-items: center;
-
-  clip-path: polygon(0 70%, 100% 33%, 100% 100%, 0% 100%);
-  transform: translate(0.5em, 0.5em);
-
-  &:hover,
-  &:focus {
-    animation: glitch 500ms;
-
-    @keyframes glitch {
-      0% {
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-          -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      14% {
-        text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-          -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      15% {
-        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-          0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      49% {
-        text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-          0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      50% {
-        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-          0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      99% {
-        text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-          0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-      100% {
-        text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
-          -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
-          -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
-      }
-    }
-  }
-`;
+// 
 
 export const NavBtn = styled.nav`
   display: flex;

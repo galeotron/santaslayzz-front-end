@@ -320,7 +320,7 @@ export const PrevTourneyContainer = styled.div`
     }
 `;
 
-export const PrevTourneyWrapper = styled(LinkR)`
+export const PrevTourneyWrapper = styled.div`
     width: 100%;
     transition: all 400ms ease-in-out;
     opacity: 0.8;

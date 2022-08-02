@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 
-import Shirt from "../components/Clothing";
+import Shirt from "../components/Clothing/Shirt";
 import { Length } from "../components/Clothing/SliderData";
 import SidebarCart from "../SidebarCart";
 import NavbarStore from "../components/NavbarStore";

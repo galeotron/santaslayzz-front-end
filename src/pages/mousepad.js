@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../components/Footer";
 
-import Mousepad from "../components/Clothing";
+import Mousepad from "../components/Clothing/Mousepad";
 import { Length } from "../components/Clothing/SliderData";
 import SidebarCart from "../SidebarCart";
 import NavbarStore from "../components/NavbarStore";

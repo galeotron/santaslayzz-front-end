@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link as LinkR } from "react-router-dom";
 
 export const FooterContainer = styled.footer`
   position: fixed;
@@ -38,4 +39,10 @@ export const SocialIconLink = styled.a`
     transition: all 400ms ease-in-out;
     color: #fe212d;
   }
+`;
+
+export const AdminLink = styled(LinkR)`
+    color: #8dbc00;
+    position: absolute;
+    right: 10px;
 `;
